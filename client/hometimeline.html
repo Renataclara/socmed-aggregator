@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src='https://code.jquery.com/jquery-3.2.1.js'> </script>
+  </head>
+  <body>
+    <h1> </h1>
+    <div id='tweets_timeline'></div>
+    <script>
+    $(document).ready(function(){
+      loadTweet()
+    })
+
+    function loadTweet() {
+      $.ajax({
+        url: 'http://localhost:3000/twitter/hometimeline',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          data.forEach( function(tweet) {
+            $('#tweets_timeline').append(`
+              <p>${tweet.text}</p>
+              `
+            )
+          })
+        },
+        error: function () {
+          alert('servernya mati')
+        }
+      })
+    }
+    </script>
+  </body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src='https://code.jquery.com/jquery-3.2.1.js'> </script>
+  </head>
+  <body>
+    <h1> </h1>
+    <div id='tweets_mytimeline'></div>
+    <button id='tweets_hometimeline'></button>
+    <script>
+    $(document).ready(function(){
+      loadTweet()
+    })
+
+    function loadTweet() {
+      $.ajax({
+        url: 'http://localhost:3000/twitter/mytimeline',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          data.forEach( function(tweet) {
+            $('#tweets_mytimeline').append(`
+              <p>${tweet.text}</p>
+              `
+            )
+          })
+        },
+        error: function () {
+          alert('servernya mati')
+        }
+      })
+
+      $.ajax({
+        url: 'http://localhost:3000/twitter/hometimeline',
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          data.forEach( function(tweet) {
+            $('#tweets_hometimeline').append(`
+              <p>${tweet.text}</p>
+              `
+            )
+          })
+        },
+        error: function () {
+          alert('servernya mati')
+        }
+      })
+    }
+    </script>
+  </body>
+</html> -->

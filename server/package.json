@@ -1,0 +1,37 @@
+{
+  "name": "outh1-renata",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.3",
+    "dotenv": "^4.0.0",
+    "express": "~4.15.2",
+    "fb": "^2.0.0",
+    "jade": "~1.11.0",
+    "jquery": "^3.2.1",
+    "morgan": "~1.8.1",
+    "nodemon": "^1.11.0",
+    "oauth": "^0.9.15",
+    "serve-favicon": "~2.4.2"
+  },
+  "description": "",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Renataclara/twatt-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Renataclara/twatt-api/issues"
+  },
+  "homepage": "https://github.com/Renataclara/twatt-api#readme"
+}

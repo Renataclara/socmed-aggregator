@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src='https://code.jquery.com/jquery-3.2.1.js'> </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1> </h1>
+    <button type="button" onclick="timeline()"> Home Timeline </button>
+    <button type="button" onclick="mytimeline()"> My Timeline </button>
+
+    <input placeholder="insert your tweet here" id="new-tweet">
+    <input type="button" value='Post' onclick='newTweet();mytimeline();'>
+
+    <input placeholder="insert your search here" id="new-search">
+    <input type="button" value='Post' onclick='search()'>
+
+    <div id="timeline"></div>
+    <script>
+
+    function timeline() {
+      axios.get('http://localhost:3000/twitter/hometimeline')
+        .then(function (data) {
+          $('#timeline').empty();
+          console.log('ini data:',data);
+          data.data.forEach( function(tweet) {
+            $('#timeline').append(`
+              <p>${tweet.text} <br>  ${tweet.created_at}</p>
+              `
+            )
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    function mytimeline() {
+      axios.get('http://localhost:3000/twitter/mytimeline')
+        .then(function (data) {
+          $('#timeline').empty();
+          console.log('ini data:',data);
+          data.data.forEach( function(tweet) {
+            $('#timeline').append(`
+              <p>${tweet.text} <br>  ${tweet.created_at}</p>
+              `
+            )
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    function newTweet() {
+      axios.post('http://localhost:3000/twitter/posttweet', {
+        status: $('#new-tweet').val()
+      })
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    function search() {
+      axios.post('http://localhost:3000/twitter/search', {
+        search: $('#new-search').val()
+      })
+        .then(function (data) {
+          $('#timeline').empty();
+          // console.log('hasil search',data);
+          data.data.statuses.forEach( tweet => {
+              $('#timeline').append(`
+                <p>${tweet.text} <br>  ${tweet.created_at}</p>
+                `
+              )
+          })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    </script>
+  </body>
+</html>
